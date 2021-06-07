@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       pokemon: { name: ""}
     };
-
+  }
     componentDidMount() {
     fetch("https://pokeapi.co/api/v2/pokemon/3?limit=1")
     .then((d) => d.json())
@@ -18,11 +18,11 @@ class App extends Component {
     })
     .catch((err) => console.log(err));
   
-
+  }
   render() {
   return (
     <div className="App">
-      <p>counter: {this.state.pokemon.name}</p>
+      <p>{this.state.pokemon.name}</p>
     </div>
   );
   }
