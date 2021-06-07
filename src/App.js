@@ -1,25 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { Component } from "react";
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pokemon: { name: ""}
+    };
+
+    componentDidMount() {
+    fetch("https://pokeapi.co/api/v2/pokemon/3?limit=1")
+    .then((d) => d.json())
+    .then((d) => {
+      this.setState((state) => ({ pokemon: d }));
+    })
+    .catch((err) => console.log(err));
+  
+
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>counter: {this.state.pokemon.name}</p>
     </div>
   );
+  }
 }
+
 
 export default App;
